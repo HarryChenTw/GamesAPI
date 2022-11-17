@@ -1,23 +1,27 @@
 {
-  "name": "restapi",
-  "version": "0.0.0",
-  "private": true,
+  "name": "gamesapi",
+  "version": "1.0.0",
+  "description": "An API can get all upcoming game in this week",
+  "main": "./src/index.js",
   "scripts": {
     "build": "npx webpack -w",
     "start": "node ./dist/index.bundle"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarryChenTw/GamesAPI.git"
+  },
+  "author": "Harry Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HarryChenTw/GamesAPI/issues"
+  },
+  "homepage": "https://github.com/HarryChenTw/GamesAPI#readme",
   "dependencies": {
-    "@babel/core": "^7.20.2",
     "body-parser": "^1.20.1",
-    "cookie-parser": "~1.4.4",
-    "cors": "^2.8.5",
-    "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
     "joi": "^17.7.0",
-    "morgan": "^1.10.0",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
@@ -30,9 +34,7 @@
     "eslint-plugin-import": "^2.26.0",
     "nodemon": "^2.0.20",
     "webpack": "^5.75.0",
-    "webpack-cli": "^4.10.0",
+    "webpack-cli": "^5.0.0",
     "webpack-node-externals": "^3.0.0"
-  },
-  "main": "index.js",
-  "license": "MIT"
+  }
 }

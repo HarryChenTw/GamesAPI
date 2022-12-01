@@ -12,7 +12,7 @@ const connectionPool = mysql.createPool({
 });
 
 const pleagueQuery = ' \
-    SELECT * \
+    SELECT league, game_type, datetime, weekday, away_team, home_team \
     FROM pleague \
     WHERE NOW() <= datetime \
         AND datetime <= DATE(NOW() + INTERVAL(7 - WEEKDAY(NOW())) DAY) \
@@ -36,7 +36,7 @@ const getPLeagueThisWeek = () => new Promise((resolve, reject) => {
 });
 
 const t1leagueQuery = ' \
-    SELECT * \
+    SELECT league, game_type, datetime, weekday, away_team, home_team \
     FROM t1league \
     WHERE NOW() <= datetime \
         AND datetime <= DATE(NOW() + INTERVAL(7 - WEEKDAY(NOW())) DAY) \

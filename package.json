@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "build": "npx webpack -w",
-    "start": "node ./dist/index.bundle"
+    "start": "nodemon ./dist/index.bundle"
   },
   "repository": {
     "type": "git",

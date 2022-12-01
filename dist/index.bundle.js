@@ -45,7 +45,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\nconst co
   \****************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const gamesModule = __webpack_require__(/*! ../modules/games.module */ \"./src/server/modules/games.module.js\");\nconst getGames = async (req, res) => {\n  const pGames = await gamesModule.getPLeagueThisWeek().catch(err => res.send(err));\n  const t1Games = await gamesModule.getT1LeagueThisWeek().catch(err => res.send(err));\n  res.send(pGames.concat(t1Games));\n};\nmodule.exports = getGames;\n\n//# sourceURL=webpack://gamesapi/./src/server/controllers/games.controller.js?");
+eval("const gamesModule = __webpack_require__(/*! ../modules/games.module */ \"./src/server/modules/games.module.js\");\nconst getGames = async (req, res) => {\n  const pGames = await gamesModule.getPLeagueThisWeek().catch(() => res.send('Error 500 : failed fetching data from database'));\n  const t1Games = await gamesModule.getT1LeagueThisWeek().catch(() => res.send('Error 500 : failed fetching data from database'));\n  const games = [pGames, t1Games];\n  const concatedGames = await games[0].concat(...games.slice(1));\n  const sortedGames = await concatedGames.sort((a, b) => {\n    const aDatetime = new Date(a.datetime);\n    const bDatatime = new Date(b.datetime);\n    return aDatetime - bDatatime;\n  });\n  res.send(sortedGames);\n};\nmodule.exports = getGames;\n\n//# sourceURL=webpack://gamesapi/./src/server/controllers/games.controller.js?");
 
 /***/ }),
 

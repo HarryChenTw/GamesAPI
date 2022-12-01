@@ -11,19 +11,19 @@ const connectionPool = mysql.createPool({
     connectionLimit: 10, // 連線池可建立的總連線數上限(預設最多為10個連線數)
 });
 
-const getThisWeekGamesQuery = ' \
+const pleagueQuery = ' \
     SELECT * \
-    FROM PLeague \
+    FROM pleague \
     WHERE NOW() <= datetime \
         AND datetime <= DATE(NOW() + INTERVAL(7 - WEEKDAY(NOW())) DAY) \
 ';
 
-const getGamesThisWeek = () => new Promise((resolve, reject) => {
+const getPLeagueThisWeek = () => new Promise((resolve, reject) => {
     connectionPool.getConnection((connectionErr, connection) => {
         if (connectionErr) {
             reject(connectionErr);
         } else {
-            connection.query(getThisWeekGamesQuery, (queryErr, rows) => {
+            connection.query(pleagueQuery, (queryErr, rows) => {
                 if (queryErr) {
                     reject(queryErr);
                 } else {
@@ -35,4 +35,28 @@ const getGamesThisWeek = () => new Promise((resolve, reject) => {
     });
 });
 
-module.exports = { getGamesThisWeek };
+const t1leagueQuery = ' \
+    SELECT * \
+    FROM t1league \
+    WHERE NOW() <= datetime \
+        AND datetime <= DATE(NOW() + INTERVAL(7 - WEEKDAY(NOW())) DAY) \
+';
+
+const getT1LeagueThisWeek = () => new Promise((resolve, reject) => {
+    connectionPool.getConnection((connectionErr, connection) => {
+        if (connectionErr) {
+            reject(connectionErr);
+        } else {
+            connection.query(t1leagueQuery, (queryErr, rows) => {
+                if (queryErr) {
+                    reject(queryErr);
+                } else {
+                    resolve(rows);
+                }
+            });
+            connection.release();
+        }
+    });
+});
+
+module.exports = { getPLeagueThisWeek, getT1LeagueThisWeek };

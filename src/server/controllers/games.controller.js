@@ -1,9 +1,9 @@
 const gamesModule = require('../modules/games.module');
 
-const getGames = (req, res) => {
-    gamesModule.getGamesThisWeek().then((result) => {
-        res.send(result); // 成功回傳result結果
-    }).catch((err) => res.send(err)); // 失敗回傳錯誤訊息
+const getGames = async (req, res) => {
+    const pGames = await gamesModule.getPLeagueThisWeek().catch((err) => res.send(err));
+    const t1Games = await gamesModule.getT1LeagueThisWeek().catch((err) => res.send(err));
+    res.send(pGames.concat(t1Games));
 };
 
 module.exports = getGames;

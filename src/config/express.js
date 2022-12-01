@@ -7,7 +7,7 @@ const app = express();
 
 /* GET home page. */
 app.get('/', (req, res) => {
-    res.send(`get request from http://127.0.0.1:${config.port} (${config.env}) homepage`);
+    res.send(`http://127.0.0.1:${config.port} (${config.env}) homepage`);
 });
 
 app.use('/api', index);

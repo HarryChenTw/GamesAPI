@@ -11,7 +11,7 @@
 ```
 will return games in json format:
 
-<img width="422" alt="Screen Shot 2022-12-02 at 11 19 04 AM" src="https://user-images.githubusercontent.com/75982405/205210265-cfd5948c-be54-4e85-be77-0a7d6433d90b.png">
+<img height="400" alt="Screen Shot 2022-12-02 at 11 19 04 AM" src="https://user-images.githubusercontent.com/75982405/205210265-cfd5948c-be54-4e85-be77-0a7d6433d90b.png">
 
 <br>
 

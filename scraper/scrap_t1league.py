@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
+import time
 import pandas as pd
 
 from utils import to_datetime
@@ -11,7 +12,7 @@ print('Scraping data ... ')
 # connect with website
 option = webdriver.ChromeOptions()
 option.add_argument('--headless')
-browser_driver = webdriver.Chrome(executable_path='webdriver/chromedriver', options=option)
+browser_driver = webdriver.Chrome(executable_path='./webdriver/chromedriver', options=option)
 browser_driver.get(f'https://t1league.basketball/schedule')
 
 # select game year
@@ -28,6 +29,7 @@ game_type_selecter.select_by_visible_text(game_type[0]) # 0 refers to 全部類�
 browser_driver.find_elements(by=By.CSS_SELECTOR, value='ul.tabs>li')[0].click()
 
 # scrap through all games
+time.sleep(3) # wait for it to load (or it may find nothing)
 games_table = list()
 for match in browser_driver.find_elements(by=By.CSS_SELECTOR, value='div.match'):
     date, weekday, time = match.find_element(by=By.CSS_SELECTOR, value='div.match-head>div.match-info>p.match-date').text.split()
@@ -43,6 +45,7 @@ for match in browser_driver.find_elements(by=By.CSS_SELECTOR, value='div.match')
 
 cols = ['date', 'weekday','time', 'away_team', 'home_team', 'game_type']
 games_table = pd.DataFrame(games_table, columns = cols)
+print(games_table.head())
 games_table['datetime'] = games_table.apply(to_datetime, axis = 1)
 games_table['league'] = 'T1 League'
 print('Done')

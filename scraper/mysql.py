@@ -1,11 +1,14 @@
+import os
 import pymysql
+from dotenv import load_dotenv
+load_dotenv() # automatically load .env file (prevent push secret info into github)
 
 db_settings = {
-    "host": "127.0.0.1",
-    "port": 3306,
-    "user": "root",
-    "password": "Harry669835",
-    "db": "games",
+    "host": os.getenv('MYSQL_HOST'),
+    "port": int(os.getenv('MYSQL_PORT')),
+    "user": os.getenv('MYSQL_USER'),
+    "password": os.getenv('MYSQL_PASS'),
+    "db": os.getenv('MYSQL_DATABASE'),
     "charset": "utf8"
 }
 

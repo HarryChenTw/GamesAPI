@@ -11,7 +11,10 @@
 ```
 will return games in json format (sorted by datetime):
 
-<img height="400" alt="Screen Shot 2022-12-02 at 11 19 04 AM" src="https://user-images.githubusercontent.com/75982405/205210265-cfd5948c-be54-4e85-be77-0a7d6433d90b.png">
+<img height="400" alt="Screen Shot 2022-12-03 at 7 58 22 PM" src="https://user-images.githubusercontent.com/75982405/205439936-516b4c53-16ae-481b-9ec9-460c2476e64f.png">
+
+it could also specify a league, e.g. ```https://127.0.0.1:8080/api/games/pleague```
+
 
 <br>
 

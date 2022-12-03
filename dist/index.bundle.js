@@ -75,7 +75,7 @@ eval("const express = __webpack_require__(/*! express */ \"express\");\nconst ga
   \******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const express = __webpack_require__(/*! express */ \"express\");\nconst gamesRouter = __webpack_require__(/*! ./games.route */ \"./src/server/routes/games.route.js\");\nconst router = express.Router();\n\n/* get api homepage */\nrouter.get('/', (req, res) => {\n  res.send('API Page');\n});\n\n/* get games homepage */\nrouter.use('/games', gamesRouter);\nmodule.exports = router;\n\n//# sourceURL=webpack://gamesapi/./src/server/routes/index.route.js?");
+eval("const express = __webpack_require__(/*! express */ \"express\");\nconst gamesRouter = __webpack_require__(/*! ./games.route */ \"./src/server/routes/games.route.js\");\nconst router = express.Router();\n\n/* get api homepage */\nrouter.get('/', (req, res) => {\n  const apiDes = '\\\n    <h2> API Usage Guide </h2> \\\n    <ul style=\"line-height:2;\">\\\n        <li><b> .../api/games </b> → get all upcoming games from all leagues</li>\\\n        <ul>\\\n            <li><b> .../api/games/pleague </b>  → get upcoming games from P League </li>\\\n            <li><b> .../api/games/t1league </b>  → get upcoming games from T1 League </li>\\\n        </ul>\\\n    </ul>\\\n    ';\n  res.send(apiDes);\n});\n\n/* get games homepage */\nrouter.use('/games', gamesRouter);\nmodule.exports = router;\n\n//# sourceURL=webpack://gamesapi/./src/server/routes/index.route.js?");
 
 /***/ }),
 

@@ -59,4 +59,29 @@ const getT1LeagueThisWeek = () => new Promise((resolve, reject) => {
     });
 });
 
-module.exports = { getPLeagueThisWeek, getT1LeagueThisWeek };
+const ubaQuery = " \
+    SELECT league, game_type, datetime, weekday, team_1, team_2 \
+    FROM uba \
+    WHERE NOW() <= datetime \
+        AND datetime <= DATE(NOW() + INTERVAL(7 - WEEKDAY(NOW())) DAY) \
+        AND (team_1 in ('政治大學', '健行科大', '輔仁大學') OR team_2 in ('政治大學', '健行科大', '輔仁大學'))\
+";
+
+const getUBAThisWeek = () => new Promise((resolve, reject) => {
+    connectionPool.getConnection((connectionErr, connection) => {
+        if (connectionErr) {
+            reject(connectionErr);
+        } else {
+            connection.query(ubaQuery, (queryErr, rows) => {
+                if (queryErr) {
+                    reject(queryErr);
+                } else {
+                    resolve(rows);
+                }
+            });
+            connection.release();
+        }
+    });
+});
+
+module.exports = { getPLeagueThisWeek, getT1LeagueThisWeek, getUBAThisWeek };

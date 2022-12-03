@@ -9,5 +9,6 @@ router.get('/', gamesCtrl.getAllGames);
 /* separate league */
 router.get('/pleague', gamesCtrl.getPleague);
 router.get('/t1league', gamesCtrl.getT1league);
+router.get('/uba', gamesCtrl.getUBA);
 
 module.exports = router;
